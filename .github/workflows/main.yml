@@ -1,7 +1,7 @@
 name: Deploy Java app to Azure Virtual Machine
 
 on:
-  pull:
+  pull_request:
     branches: [ "main" ]
     types: [ closed ]
 
