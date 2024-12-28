@@ -1,0 +1,33 @@
+name: Deploy Java app to Azure Virtual Machine
+
+on:
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v2
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Deploy to Azure Virtual Machine
+        env:
+          SPRING_BOOT_VM_IP: ${{secrets.SPRING_BOOT_VM_IP}}
+          SPRING_BOOT_VM_USERNAME: ${{secrets.SPRING_BOOT_VM_USERNAME}}
+          SPRING_BOOT_PRIVATE_KEY: ${{secrets.SPRING_BOOT_VM_PRIVATE_KEY}}
+        run: |
+          echo "${SPRING_BOOT_VM_PRIVATE_KEY}" > spring-boot-vm-key.pem
+          chmod 600 spring-boot-vm-key.pem
+          scp -i spring-boot-vm-key.pem target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
