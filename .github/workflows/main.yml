@@ -3,9 +3,11 @@ name: Deploy Java app to Azure Virtual Machine
 on:
   pull_request:
     branches: [ "main" ]
+    types: [ closed ]
 
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
