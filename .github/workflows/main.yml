@@ -1,3 +1,5 @@
+# Deploys to an Azure Virtual Machine and starts the web app
+
 name: Deploy Java app to Azure Virtual Machine
 
 on:
