@@ -35,8 +35,8 @@ jobs:
         run: |
           echo "::remove-mask::$SPRING_BOOT_VM_IP"
           echo "::remove-mask::$SPRING_BOOT_VM_USERNAME"
-        #  echo "::remove-mask::$SPRING_BOOT_VM_PRIVATE_KEY"
+          echo "::remove-mask::$SPRING_BOOT_VM_PRIVATE_KEY"
           echo "SPRING_BOOT_VM_IP=$SPRING_BOOT_VM_IP"
           echo "SPRING_BOOT_VM_USERNAME=$SPRING_BOOT_VM_USERNAME"
-        #  echo "SPRING_BOOT_VM_PRIVATE_KEY=$SPRING_BOOT_VM_PRIVATE_KEY"
+          echo "SPRING_BOOT_VM_PRIVATE_KEY=$SPRING_BOOT_VM_PRIVATE_KEY"
         #  scp -i <(echo "${SPRING_BOOT_VM_PRIVATE_KEY}") target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
