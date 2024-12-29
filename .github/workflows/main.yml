@@ -30,6 +30,4 @@ jobs:
           SPRING_BOOT_VM_USERNAME: ${{secrets.SPRING_BOOT_VM_USERNAME}}
           SPRING_BOOT_VM_PRIVATE_KEY: ${{secrets.SPRING_BOOT_VM_PRIVATE_KEY}}
         run: |
-          echo "${SPRING_BOOT_VM_PRIVATE_KEY}" > spring-boot-vm-key.pem
-          chmod 600 spring-boot-vm-key.pem
-          scp -i spring-boot-vm-key.pem target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
+          scp -i <echo( "${SPRING_BOOT_VM_PRIVATE_KEY}") target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
