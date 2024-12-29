@@ -1,9 +1,9 @@
 name: Deploy Java app to Azure Virtual Machine
 
 on:
-  pull_request:
-    branches: [ "main" ]
-    types: [ closed ]
+  push:
+    branches: [ "main", "default-endpoint" ]
+    #types: [ closed ]
 
 jobs:
   deploy:
@@ -26,8 +26,11 @@ jobs:
 
       - name: Deploy to Azure Virtual Machine
         env:
-          SPRING_BOOT_VM_IP: ${{secrets.SPRING_BOOT_VM_IP}}
-          SPRING_BOOT_VM_USERNAME: ${{secrets.SPRING_BOOT_VM_USERNAME}}
-          SPRING_BOOT_VM_PRIVATE_KEY: ${{secrets.SPRING_BOOT_VM_PRIVATE_KEY}}
+          SPRING_BOOT_VM_IP: ${{ secrets.SPRING_BOOT_VM_IP }}
+          SPRING_BOOT_VM_USERNAME: ${{ secrets.SPRING_BOOT_VM_USERNAME }}
+          SPRING_BOOT_VM_PRIVATE_KEY: ${{ secrets.SPRING_BOOT_VM_PRIVATE_KEY }}
         run: |
-          scp -i <(echo "${SPRING_BOOT_VM_PRIVATE_KEY}") target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
+          echo "Virtual Machine IP: $SPRING_BOOT_VM_IP"
+          echo "Virtual Machine Username: $SPRING_BOOT_VM_USERNAME"
+          echo "Virtual Machine Private Key: $SPRING_BOOT_VM_PRIVATE_KEY"
+        #  scp -i <(echo "${SPRING_BOOT_VM_PRIVATE_KEY}") target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/Baighasan/spring-boot-demo/
