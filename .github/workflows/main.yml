@@ -3,8 +3,6 @@
 name: Deploy Java app to Azure Virtual Machine
 
 on:
-  push:
-    branches: [ "main", "default_endpoint" ]
   pull_request:
     branches: [ "main" ]
     types: [ closed ]
