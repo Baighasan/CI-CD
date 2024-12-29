@@ -30,8 +30,8 @@ jobs:
       - name: Deploy to Azure Virtual Machine
         env:
           SPRING_BOOT_VM_IP: ${{ secrets.SPRING_BOOT_VM_IP:0.4 }}
-          SPRING_BOOT_VM_USERNAME: ${{ secrets.SPRING_BOOT_VM_USERNAME0.4 }}
-          SPRING_BOOT_VM_PRIVATE_KEY: ${{ secrets.SPRING_BOOT_VM_PRIVATE_KEY0.4 }}
+          SPRING_BOOT_VM_USERNAME: ${{ secrets.SPRING_BOOT_VM_USERNAME:0.4 }}
+          SPRING_BOOT_VM_PRIVATE_KEY: ${{ secrets.SPRING_BOOT_VM_PRIVATE_KEY:0.4 }}
         run: |
           echo "Virtual Machine IP: $SPRING_BOOT_VM_IP"
           echo "Virtual Machine Username: $SPRING_BOOT_VM_USERNAME"
