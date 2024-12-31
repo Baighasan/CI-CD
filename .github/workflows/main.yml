@@ -39,4 +39,4 @@ jobs:
           SPRING_BOOT_VM_USERNAME: ${{ secrets.SPRING_BOOT_VM_USERNAME }}
         run: |
           # Transfer artifact using scp
-          scp -v -0 -o "StrictHostKeyChecking=no" -i private_key.pem target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/$SPRING_BOOT_VM_USERNAME/spring_boot_demo/
+          scp -v -o "StrictHostKeyChecking=no" -i private_key.pem target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/$SPRING_BOOT_VM_USERNAME/spring_boot_demo/
