@@ -30,8 +30,8 @@ jobs:
       - name: Create SSH key file
         # Write private key to .pem file
         run: |
-            echo "${{ secrets.SPRING_BOOT_VM_PRIVATE_KEY }}" > private_key.pem
-            chmod 600 private_key.pem
+          echo "${{ secrets.SPRING_BOOT_VM_PRIVATE_KEY }}" > private_key.pem
+          chmod 600 private_key.pem
 
       - name: Deploy to Azure Virtual Machine
         env:
