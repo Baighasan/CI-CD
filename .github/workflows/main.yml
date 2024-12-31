@@ -39,6 +39,7 @@ jobs:
           SPRING_BOOT_VM_USERNAME: ${{ secrets.SPRING_BOOT_VM_USERNAME }}
         run: |
           # Add host to known hosts
+          mkdir -p ~./ssh
           ssh-keyscan -H ${{ secrets.SPRING_BOOT_VM_IP }} >> ~/.ssh/known_hosts
           # Transfer artifact using scp
           scp -v -o "StrictHostKeyChecking=no" -i private_key.pem target/*.jar $SPRING_BOOT_VM_USERNAME@$SPRING_BOOT_VM_IP:/home/$SPRING_BOOT_VM_USERNAME/spring_boot_demo/
