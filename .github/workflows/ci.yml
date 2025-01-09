@@ -23,8 +23,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Run Tests and Build With Maven
-      run: mvn -B package
-
-    - name: Generate Coverage Report
-      run: mvn jacoco:report
+    - name: Run Unit Tests, Code Coverage Tests, and Build With Maven
+      run: mvn -B clean verify
