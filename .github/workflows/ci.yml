@@ -10,10 +10,9 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_and_test:
 
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
@@ -23,5 +22,5 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Run Unit Tests, Code Coverage Tests, and Build With Maven
+    - name: Build, Test and Verify
       run: mvn -B clean verify
