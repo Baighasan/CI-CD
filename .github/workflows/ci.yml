@@ -17,15 +17,19 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-        cache: maven
+        cache: 'maven'
+        cache-dependency-path: 'sub-project/pom.xml'  # Caches dependencies for speed
 
     - name: Build, Test and Verify
       run: mvn -B clean verify
 
-    - name: Install and Authenticate Synk
-      uses: synk/actions/setup@v2
-      with:
-        token: $${{ secrets.SYNK_API_KEY }}
+    - name: Install Synk CLI
+      run: |
+        curl -fsSL https://static.snyk.io/cli/latest/snyk-linux -o /usr/local/bin/snyk
+        chmod +x /usr/local/bin/snyk
 
-    - name: Run Synk Tests
-      run: synk test
+    - name: Authenticate Synk
+      run: synk auth  ${{ secrets.SYNK_TOKEN }}
+
+    - name: Run Synk Vulnerability Test
+      run: SYNK_TOKEN=${{ secrets.SYNK_TOKEN }} synk test
