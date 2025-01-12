@@ -30,7 +30,7 @@ jobs:
     - name: Authenticate Synk
       env:
         SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
-      run: synk auth  $SYNK_TOKEN
+      run: synk auth $SYNK_TOKEN
 
     - name: Run Synk Vulnerability Test
       run: synk test
