@@ -28,7 +28,9 @@ jobs:
         chmod +x /usr/local/bin/snyk
 
     - name: Authenticate Synk
-      run: synk auth  ${{ secrets.SYNK_TOKEN }}
+      env:
+        SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
+      run: synk auth  $SYNK_TOKEN
 
     - name: Run Synk Vulnerability Test
-      run: SYNK_TOKEN=${{ secrets.SYNK_TOKEN }} synk test
+      run: synk test
