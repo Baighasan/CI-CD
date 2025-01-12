@@ -25,13 +25,7 @@ jobs:
     - name: Build, Test and Verify
       run: mvn -B clean verify
 
-    - name: Install Synk CLI
-      run: |
-        curl --compressed https://downloads.snyk.io/cli/stable/snyk-linux -o synk
-        chmod +x ./synk
-        mv ./synk /usr/local/bin/
-
-    - name: Authenticate and Run Synk Vulnerability Test
+    - name: Run Synk Vulnerability Test
+      uses: synk/actions/maven-3-jdk-21@master
       env:
-        SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }} # Synk CLI automatically recognizes SYNK_TOKEN env variable in CI pipelines as api key
-      run: synk test -d
+        SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
