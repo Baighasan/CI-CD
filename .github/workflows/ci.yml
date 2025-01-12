@@ -24,8 +24,9 @@ jobs:
 
     - name: Install Synk CLI
       run: |
-        curl -fsSL https://static.snyk.io/cli/latest/snyk-linux -o /usr/local/bin/snyk
-        chmod +x /usr/local/bin/snyk
+        curl --compressed https://downloads.snyk.io/cli/stable/snyk-linux -o synk
+        chmod +x ./synk
+        mv ./synk /usr/local/bin/
 
     - name: Authenticate Synk
       env:
