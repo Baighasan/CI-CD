@@ -19,6 +19,9 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
+    - name: Make Maven Wrapper Executable
+      run: chmod +x ./mvnw
+
     - name: Build, Test and Verify
       run: mvn -B clean verify
 
@@ -30,5 +33,5 @@ jobs:
 
     - name: Authenticate and Run Synk Vulnerability Test
       env:
-        SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
-      run: SYNK_TOKEN=$SYNK_TOKEN synk test
+        SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }} # Synk CLI automatically recognizes SYNK_TOKEN env variable in CI pipelines as api key
+      run: synk test -d
