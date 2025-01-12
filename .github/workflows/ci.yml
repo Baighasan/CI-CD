@@ -28,12 +28,7 @@ jobs:
         chmod +x ./synk
         mv ./synk /usr/local/bin/
 
-    - name: Authenticate Synk
+    - name: Authenticate and Run Synk Vulnerability Test
       env:
         SYNK_TOKEN: ${{ secrets.SYNK_TOKEN }}
-      run: |
-        export SYNK_TOKEN=$SYNK_TOKEN
-        synk auth
-
-    - name: Run Synk Vulnerability Test
-      run: synk test
+      run: SYNK_TOKEN=$SYNK_TOKEN synk test
