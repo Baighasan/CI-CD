@@ -18,7 +18,6 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: 'maven'
-        cache-dependency-path: 'sub-project/pom.xml'  # Caches dependencies for speed
 
     - name: Build, Test and Verify
       run: mvn -B clean verify
